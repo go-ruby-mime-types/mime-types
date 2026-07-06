@@ -191,3 +191,14 @@ at 100%.
 
 The embedded registry data derives from
 [`mime-types-data`](https://github.com/mime-types/mime-types-data) (MIT).
+
+## WebAssembly
+
+Being pure Go (CGO=0), this library also compiles to **WebAssembly** — both
+`GOOS=js GOARCH=wasm` (browser / Node.js) and `GOOS=wasip1 GOARCH=wasm` (WASI).
+CI builds both targets on every push, alongside the six 64-bit native/qemu arches.
+
+```sh
+GOOS=js     GOARCH=wasm go build ./...   # browser / Node
+GOOS=wasip1 GOARCH=wasm go build ./...   # WASI (wasmtime, wasmer, wasmedge, …)
+```
